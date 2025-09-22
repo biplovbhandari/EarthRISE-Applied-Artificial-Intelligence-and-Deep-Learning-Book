@@ -55,6 +55,8 @@ format:
     # output-fold: true
     # output-summary: "Show output"
     page-tools: ["colab", "github", "source", "edit", "issue"]
+    includes:
+      before-body: _includes/ga.html
   pdf:
     documentclass: scrreprt  # book
     page-tools: [] # Remove page tools for PDF
@@ -62,5 +64,3 @@ format:
     output-fold: false  # Don't fold output in PDF
   # page-tools: ["colab", "github"]
 
-website:
-  google-analytics: "G-FSHTGR1D98"
