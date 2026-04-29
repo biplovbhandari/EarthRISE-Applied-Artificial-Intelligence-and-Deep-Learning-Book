@@ -63,3 +63,6 @@ format:
     page-tools: []
     code-fold: false
     output-fold: false
+    keep-tex: false
+    execute:
+      enabled: false

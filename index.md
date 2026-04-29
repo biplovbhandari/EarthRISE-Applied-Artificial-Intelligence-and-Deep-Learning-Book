@@ -1,7 +1,7 @@
 ---
 author:
   - name: Tim Mayer
-    orcid: 0000-1111-2222-3333
+    orcid: 0000-0001-9489-9392
     affiliations:
       - name: NASA - EarthRISE
       - name: The University of Alabama in Huntsville
@@ -56,7 +56,7 @@ National Space Science and Technology Center<br>
 
 The intersection of deep learning, foundational models, and geospatial science is reshaping how we observe, interpret, and manage our planet. Remote sensing analysts, Earth scientists, environmental specialists, and GIS professionals increasingly encounter machine learning tools in their workflows---yet for many, the path into this rapidly evolving landscape remains a challenge. Comprehensive textbooks struggle to keep pace with the field's velocity, while research literature often presupposes a depth of AI expertise that most applied Earth scientists have not yet developed. This book was created to bridge that gap.
 
-The *EarthRISE Applied Artificial Intelligence and Deep Learning Book* is the product of more than seven years of community-driven knowledge sharing within the Geo-AI Working Group. Rooted in three defining pillars---Building Capacity, Application, and Knowledge Sharing---this volume represents the third pillar in action: a practitioner's guide distilled from real-world experience, peer collaboration, and a deep commitment to making advanced geospatial AI accessible to the broader Earth observation community. This book stands in a lineage of open, community-authored NASA knowledge products---alongside the *SAR Handbook* and the *Google Earth Engine Book*---sharing the same mission: to translate technical expertise into resources practitioners can immediately apply.
+The *EarthRISE Applied Artificial Intelligence and Deep Learning Book* is the product of more than seven years of community-driven knowledge sharing within the Geospatial-Artificial Intelligence Working Group (Geo-AI WG). Rooted in three defining pillars---Building Capacity, Application, and Knowledge Sharing---this volume represents the third pillar in action: a practitioner's guide distilled from real-world experience, peer collaboration, and a deep commitment to making advanced geospatial AI accessible to the broader Earth observation community. This book stands in a lineage of open, community-authored NASA knowledge products---alongside the *SAR Handbook* and the *Google Earth Engine Book*---sharing the same mission: to translate technical expertise into resources practitioners can immediately apply.
 
 ### What This Book Is---and What It Is Not
 
