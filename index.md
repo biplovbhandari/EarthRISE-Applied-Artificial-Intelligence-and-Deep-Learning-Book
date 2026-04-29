@@ -1,6 +1,7 @@
 ---
 author:
-  - name: Tim Mayer [![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0001-9489-9392)
+  - name: Tim Mayer
+    orcid: 0000-0001-9489-9392
     affiliations:
       - name: NASA - EarthRISE
       - name: The University of Alabama in Huntsville
@@ -155,13 +156,13 @@ Above all, we thank the readers and practitioners who engage with this material,
 
 <img src="Images/Tim_img_410_410.png" width="200"/>
 
-**Tim Mayer** is a Research Scientist at the University of Alabama in Huntsville and Lead Data Scientist of the NASA EarthRISE program. Tim has worked at the intersection of applied research and Geospatial Artificial Intelligence for over a decade with NASA. Tim co-leads the Geospatial Artificial Intelligence Working Group. His primary research interest surrounds the applied intersection of Ecology and advanced deep learning techniques.
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is a Research Scientist at the University of Alabama in Huntsville and Lead Data Scientist of the NASA EarthRISE program. Tim has worked at the intersection of applied research and Geospatial Artificial Intelligence for over a decade with NASA. Tim co-leads the Geospatial Artificial Intelligence Working Group. His primary research interest surrounds the applied intersection of Ecology and advanced deep learning techniques.
 
 ---
 
 <img src="Images/Biplov_img_410_410.png" width="200"/>
 
-**Biplov Bhandari** — *Bio forthcoming.*
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> — *Bio forthcoming.*
 
 ---
 

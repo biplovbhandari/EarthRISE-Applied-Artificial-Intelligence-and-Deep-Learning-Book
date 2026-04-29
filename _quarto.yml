@@ -59,11 +59,15 @@ format:
     includes:
       before-body: _includes/ga.html
   pdf:
-    documentclass: scrreprt
-    page-tools: []
-    code-fold: false
-    output-fold: false
-    keep-tex: false
+      documentclass: scrreprt
+      page-tools: []
+      code-fold: false
+      output-fold: false
+      keep-tex: false
+      fig-format: png
+      header-includes:
+        - \usepackage{graphicx}
+        - \renewenvironment{CSLReferences}[2]{}{}
 
 execute:
   enabled: false
