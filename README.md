@@ -6,7 +6,7 @@
 [![EarthRISE: Development](https://img.shields.io/badge/EarthRISE-Development-b50000?labelColor=191f4c)](https://appliedsciences.nasa.gov/what-we-do/capacity-building/develop)
 
 <p align="center">
-  <img width="400" height="500" src="Images/Book_Cover_delta_6_25.png">
+  <img width="400" height="500" src="Images/Book_Cover.png">
 </p>
 
 The NASA EarthRISE program harnesses NASA Earth Action capabilities to deliver trusted solutions for sustained benefits to society. This book provides practitioners with a wide variety of applied examples of Remote Sensing Artificial Intelligence and Deep Learning approaches, with each chapter focusing on a specific problem set and spanning NASA Earth Action thematic areas.

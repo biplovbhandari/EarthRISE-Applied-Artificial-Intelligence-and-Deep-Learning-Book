@@ -17,3 +17,6 @@
 *.log
 *.tex
 *.aux
+
+# Notebook-downloaded training data
+03_Semantic_Segmentation/01__Crop_Mapping/notebooks/content/
