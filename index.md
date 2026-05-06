@@ -8,7 +8,7 @@ author:
   - name: Biplov Bhandari
     orcid: 0000-0001-6169-8236
     affiliations:
-      - name: Woolpert Digital Innovations
+      - name: Earth Resources Technology
   - name: David Saah
     affiliations:
       - name: University of San Francisco
