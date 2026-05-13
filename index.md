@@ -162,7 +162,7 @@ Above all, we thank the readers and practitioners who engage with this material,
 
 <img src="Images/Biplov_img_410_410.png" width="200"/>
 
-**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> — *Bio forthcoming.*
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is a computational Earth scientist at Earth Resources Technology, where he turns satellite and geospatial data into decisions by building cloud-native pipelines, predictive models, and geospatial AI agents. His work spans climate and environmental risk — wildfire, flood, drought, and infrastructure resilience — and extends to disaster response and humanitarian programs with public-sector partners. He also serves as Secretary of the Sahana Software Foundation, a free and open-source disaster-management community.
 
 ---
 
