@@ -16,7 +16,7 @@
 <meta name="author" content="Wipawinee Khamnoi">
 <meta name="description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 
-<title>4&nbsp; Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book</title>
+<title>3.3 Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -94,9 +94,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-4598a8ce9d006ffd9079c9f2f534150c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-c8194f8818a5177e36a565bc960368c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-4598a8ce9d006ffd9079c9f2f534150c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -154,12 +154,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
-<meta property="og:title" content="4&nbsp; Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:title" content="3.3 Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book">
 <meta property="og:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 <meta property="og:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta property="og:site_name" content="Applied Artificial Intelligence and Deep Learning Book">
 <meta property="og:image:alt" content="">
-<meta name="twitter:title" content="4&nbsp; Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:title" content="3.3 Clay Deforestation Segmentation Model – Applied Artificial Intelligence and Deep Learning Book">
 <meta name="twitter:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 <meta name="twitter:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta name="twitter:image:alt" content="">
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">3. Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -373,16 +373,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../02_Data_Preparation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Preparation</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Semantic Segmentation</span></a>
+ <span class="menu-text">2. Data Preparation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -390,34 +384,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></span></a>
+  <a href="../../../02_Data_Preparation/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Preparation</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Time Series</span></a>
+ <span class="menu-text">3. Semantic Segmentation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -425,40 +400,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span></a>
+  <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1 Crop Mapping — Rice Mapping in Bhutan with U-Net</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Downscaling</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Future of Deep Learning and Foundational Models</span></a>
+ <span class="menu-text">4. Object Detection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -466,24 +426,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
+  <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Time Series</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics and Artificial Intelligence</span></span></a>
+  <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1 Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Ecological Process Simulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1 Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Transfer Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Transfer Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Fusion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fusion</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Downscaling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Downscaling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Future of Deep Learning and Foundation Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">10.1 Evaluating Foundation Models Trained with Earth Observation Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Ethics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ethics and Artificial Intelligence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Conclusions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../citing.html" class="sidebar-item-text sidebar-link">
@@ -506,99 +581,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#course-project---deforestation-analysis" id="toc-course-project---deforestation-analysis" class="nav-link active" data-scroll-target="#course-project---deforestation-analysis"><span class="header-section-number">4.0.1</span> Course Project - Deforestation Analysis</a></li>
-  <li><a href="#project-context" id="toc-project-context" class="nav-link" data-scroll-target="#project-context"><span class="header-section-number">4.1</span> 🌍 Project Context</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><span class="header-section-number">4.2</span> 🎯 Objectives:</a></li>
-  <li><a href="#libraries-and-tools" id="toc-libraries-and-tools" class="nav-link" data-scroll-target="#libraries-and-tools"><span class="header-section-number">4.3</span> 💻 Libraries and Tools:</a>
+  <li><a href="#course-project---deforestation-analysis" id="toc-course-project---deforestation-analysis" class="nav-link active" data-scroll-target="#course-project---deforestation-analysis">Course Project - Deforestation Analysis</a></li>
+  <li><a href="#project-context" id="toc-project-context" class="nav-link" data-scroll-target="#project-context">🌍 Project Context</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">🎯 Objectives:</a></li>
+  <li><a href="#libraries-and-tools" id="toc-libraries-and-tools" class="nav-link" data-scroll-target="#libraries-and-tools">💻 Libraries and Tools:</a>
   <ul class="collapse">
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow"><span class="header-section-number">4.3.1</span> ✅ Workflow:</a></li>
-  <li><a href="#clay-foundation-model" id="toc-clay-foundation-model" class="nav-link" data-scroll-target="#clay-foundation-model"><span class="header-section-number">4.3.2</span> Clay Foundation Model</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">✅ Workflow:</a></li>
+  <li><a href="#clay-foundation-model" id="toc-clay-foundation-model" class="nav-link" data-scroll-target="#clay-foundation-model">Clay Foundation Model</a></li>
   </ul></li>
-  <li><a href="#computational-requirements" id="toc-computational-requirements" class="nav-link" data-scroll-target="#computational-requirements"><span class="header-section-number">4.4</span> Computational Requirements</a></li>
-  <li><a href="#step-1-project-setup" id="toc-step-1-project-setup" class="nav-link" data-scroll-target="#step-1-project-setup"><span class="header-section-number">5</span> <strong>Step 1: Project Setup</strong></a>
+  <li><a href="#computational-requirements" id="toc-computational-requirements" class="nav-link" data-scroll-target="#computational-requirements">Computational Requirements</a></li>
+  <li><a href="#step-1-project-setup" id="toc-step-1-project-setup" class="nav-link" data-scroll-target="#step-1-project-setup"><strong>Step 1: Project Setup</strong></a>
   <ul class="collapse">
-  <li><a href="#why-these-libraries" id="toc-why-these-libraries" class="nav-link" data-scroll-target="#why-these-libraries"><span class="header-section-number">5.1</span> Why These Libraries?</a></li>
+  <li><a href="#why-these-libraries" id="toc-why-these-libraries" class="nav-link" data-scroll-target="#why-these-libraries">Why These Libraries?</a></li>
   </ul></li>
-  <li><a href="#step-2-mounting-google-drive" id="toc-step-2-mounting-google-drive" class="nav-link" data-scroll-target="#step-2-mounting-google-drive"><span class="header-section-number">6</span> <strong>Step 2: Mounting Google Drive</strong></a>
+  <li><a href="#step-2-mounting-google-drive" id="toc-step-2-mounting-google-drive" class="nav-link" data-scroll-target="#step-2-mounting-google-drive"><strong>Step 2: Mounting Google Drive</strong></a>
   <ul class="collapse">
-  <li><a href="#why-use-google-drive" id="toc-why-use-google-drive" class="nav-link" data-scroll-target="#why-use-google-drive"><span class="header-section-number">6.1</span> Why Use Google Drive?</a>
+  <li><a href="#why-use-google-drive" id="toc-why-use-google-drive" class="nav-link" data-scroll-target="#why-use-google-drive">Why Use Google Drive?</a>
   <ul class="collapse">
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions"><span class="header-section-number">6.1.1</span> Instructions:</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#step-3-authenticating-and-initializing-google-earth-engine-gee" id="toc-step-3-authenticating-and-initializing-google-earth-engine-gee" class="nav-link" data-scroll-target="#step-3-authenticating-and-initializing-google-earth-engine-gee"><span class="header-section-number">7</span> <strong>Step 3: Authenticating and Initializing Google Earth Engine (GEE)</strong></a>
-  <ul class="collapse">
-  <li><a href="#why-use-gee" id="toc-why-use-gee" class="nav-link" data-scroll-target="#why-use-gee"><span class="header-section-number">7.1</span> Why Use GEE?</a>
-  <ul class="collapse">
-  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1"><span class="header-section-number">7.1.1</span> Instructions:</a></li>
-  </ul></li>
-  <li><a href="#setting-up-your-google-earth-engine-gee-project" id="toc-setting-up-your-google-earth-engine-gee-project" class="nav-link" data-scroll-target="#setting-up-your-google-earth-engine-gee-project"><span class="header-section-number">7.2</span> Setting Up Your Google Earth Engine (GEE) Project</a></li>
-  <li><a href="#important" id="toc-important" class="nav-link" data-scroll-target="#important"><span class="header-section-number">7.3</span> 🔑 Important:</a>
-  <ul class="collapse">
-  <li><a href="#instructions-2" id="toc-instructions-2" class="nav-link" data-scroll-target="#instructions-2"><span class="header-section-number">7.3.1</span> Instructions:</a></li>
-  </ul></li>
-  <li><a href="#why-save-as-geotiff" id="toc-why-save-as-geotiff" class="nav-link" data-scroll-target="#why-save-as-geotiff"><span class="header-section-number">7.4</span> Why Save as GeoTIFF?</a>
-  <ul class="collapse">
-  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">7.4.1</span> Steps:</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">7.4.2</span> notes:</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions:</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#step-5-data-inspection-and-visualization" id="toc-step-5-data-inspection-and-visualization" class="nav-link" data-scroll-target="#step-5-data-inspection-and-visualization"><span class="header-section-number">8</span> <strong>Step 5: Data Inspection and Visualization</strong></a>
+  <li><a href="#step-3-authenticating-and-initializing-google-earth-engine-gee" id="toc-step-3-authenticating-and-initializing-google-earth-engine-gee" class="nav-link" data-scroll-target="#step-3-authenticating-and-initializing-google-earth-engine-gee"><strong>Step 3: Authenticating and Initializing Google Earth Engine (GEE)</strong></a>
   <ul class="collapse">
-  <li><a href="#what-to-look-for" id="toc-what-to-look-for" class="nav-link" data-scroll-target="#what-to-look-for"><span class="header-section-number">8.1</span> What to Look For:</a>
+  <li><a href="#why-use-gee" id="toc-why-use-gee" class="nav-link" data-scroll-target="#why-use-gee">Why Use GEE?</a>
   <ul class="collapse">
-  <li><a href="#steps-1" id="toc-steps-1" class="nav-link" data-scroll-target="#steps-1"><span class="header-section-number">8.1.1</span> Steps:</a></li>
+  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1">Instructions:</a></li>
+  </ul></li>
+  <li><a href="#setting-up-your-google-earth-engine-gee-project" id="toc-setting-up-your-google-earth-engine-gee-project" class="nav-link" data-scroll-target="#setting-up-your-google-earth-engine-gee-project">Setting Up Your Google Earth Engine (GEE) Project</a></li>
+  <li><a href="#important" id="toc-important" class="nav-link" data-scroll-target="#important">🔑 Important:</a>
+  <ul class="collapse">
+  <li><a href="#instructions-2" id="toc-instructions-2" class="nav-link" data-scroll-target="#instructions-2">Instructions:</a></li>
+  </ul></li>
+  <li><a href="#why-save-as-geotiff" id="toc-why-save-as-geotiff" class="nav-link" data-scroll-target="#why-save-as-geotiff">Why Save as GeoTIFF?</a>
+  <ul class="collapse">
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps:</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">notes:</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#step-6-cloning-the-clay-model-repository" id="toc-step-6-cloning-the-clay-model-repository" class="nav-link" data-scroll-target="#step-6-cloning-the-clay-model-repository"><span class="header-section-number">9</span> <strong>Step 6: Cloning the Clay Model Repository</strong></a>
+  <li><a href="#step-5-data-inspection-and-visualization" id="toc-step-5-data-inspection-and-visualization" class="nav-link" data-scroll-target="#step-5-data-inspection-and-visualization"><strong>Step 5: Data Inspection and Visualization</strong></a>
   <ul class="collapse">
-  <li><a href="#why-clone-the-repository" id="toc-why-clone-the-repository" class="nav-link" data-scroll-target="#why-clone-the-repository"><span class="header-section-number">9.1</span> Why Clone the Repository?</a>
+  <li><a href="#what-to-look-for" id="toc-what-to-look-for" class="nav-link" data-scroll-target="#what-to-look-for">What to Look For:</a>
   <ul class="collapse">
-  <li><a href="#steps-2" id="toc-steps-2" class="nav-link" data-scroll-target="#steps-2"><span class="header-section-number">9.1.1</span> Steps:</a></li>
+  <li><a href="#steps-1" id="toc-steps-1" class="nav-link" data-scroll-target="#steps-1">Steps:</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#step-7-downloading-the-clay-model-from-hugging-face" id="toc-step-7-downloading-the-clay-model-from-hugging-face" class="nav-link" data-scroll-target="#step-7-downloading-the-clay-model-from-hugging-face"><span class="header-section-number">10</span> <strong>Step 7: Downloading the Clay Model from Hugging Face</strong></a>
+  <li><a href="#step-6-cloning-the-clay-model-repository" id="toc-step-6-cloning-the-clay-model-repository" class="nav-link" data-scroll-target="#step-6-cloning-the-clay-model-repository"><strong>Step 6: Cloning the Clay Model Repository</strong></a>
   <ul class="collapse">
-  <li><a href="#training-setup" id="toc-training-setup" class="nav-link" data-scroll-target="#training-setup"><span class="header-section-number">10.1</span> Training Setup:</a>
+  <li><a href="#why-clone-the-repository" id="toc-why-clone-the-repository" class="nav-link" data-scroll-target="#why-clone-the-repository">Why Clone the Repository?</a>
   <ul class="collapse">
-  <li><a href="#libraries-needed-for-training" id="toc-libraries-needed-for-training" class="nav-link" data-scroll-target="#libraries-needed-for-training"><span class="header-section-number">10.1.1</span> Libraries Needed for Training:</a></li>
+  <li><a href="#steps-2" id="toc-steps-2" class="nav-link" data-scroll-target="#steps-2">Steps:</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#step-9-importing-libraries-and-setting-up-the-environment" id="toc-step-9-importing-libraries-and-setting-up-the-environment" class="nav-link" data-scroll-target="#step-9-importing-libraries-and-setting-up-the-environment"><span class="header-section-number">11</span> <strong>Step 9: Importing Libraries and Setting Up the Environment</strong></a>
+  <li><a href="#step-7-downloading-the-clay-model-from-hugging-face" id="toc-step-7-downloading-the-clay-model-from-hugging-face" class="nav-link" data-scroll-target="#step-7-downloading-the-clay-model-from-hugging-face"><strong>Step 7: Downloading the Clay Model from Hugging Face</strong></a>
   <ul class="collapse">
-  <li><a href="#why-these-libraries-1" id="toc-why-these-libraries-1" class="nav-link" data-scroll-target="#why-these-libraries-1"><span class="header-section-number">11.0.1</span> 💡 <strong>Why These Libraries?</strong></a></li>
-  <li><a href="#device-check" id="toc-device-check" class="nav-link" data-scroll-target="#device-check"><span class="header-section-number">11.0.2</span> ⚙️ <strong>Device Check:</strong></a></li>
-  <li><a href="#expected-outcome" id="toc-expected-outcome" class="nav-link" data-scroll-target="#expected-outcome"><span class="header-section-number">11.0.3</span> ✅ <strong>Expected Outcome:</strong></a></li>
+  <li><a href="#training-setup" id="toc-training-setup" class="nav-link" data-scroll-target="#training-setup">Training Setup:</a>
+  <ul class="collapse">
+  <li><a href="#libraries-needed-for-training" id="toc-libraries-needed-for-training" class="nav-link" data-scroll-target="#libraries-needed-for-training">Libraries Needed for Training:</a></li>
   </ul></li>
-  <li><a href="#step-10-building-the-clay-based-segmentor-model" id="toc-step-10-building-the-clay-based-segmentor-model" class="nav-link" data-scroll-target="#step-10-building-the-clay-based-segmentor-model"><span class="header-section-number">12</span> <strong>Step 10: Building the Clay-Based Segmentor Model</strong></a>
-  <ul class="collapse">
-  <li><a href="#model-architecture-overview" id="toc-model-architecture-overview" class="nav-link" data-scroll-target="#model-architecture-overview"><span class="header-section-number">12.0.1</span> 💡 <strong>Model Architecture Overview:</strong></a></li>
-  <li><a href="#expected-outcome-1" id="toc-expected-outcome-1" class="nav-link" data-scroll-target="#expected-outcome-1"><span class="header-section-number">12.0.2</span> ✅ <strong>Expected Outcome:</strong></a></li>
   </ul></li>
-  <li><a href="#step-11-building-the-changesegmentor-lightning-module" id="toc-step-11-building-the-changesegmentor-lightning-module" class="nav-link" data-scroll-target="#step-11-building-the-changesegmentor-lightning-module"><span class="header-section-number">13</span> <strong>Step 11: Building the changeSegmentor Lightning Module</strong></a>
+  <li><a href="#step-9-importing-libraries-and-setting-up-the-environment" id="toc-step-9-importing-libraries-and-setting-up-the-environment" class="nav-link" data-scroll-target="#step-9-importing-libraries-and-setting-up-the-environment"><strong>Step 9: Importing Libraries and Setting Up the Environment</strong></a>
   <ul class="collapse">
-  <li><a href="#why-use-lightningmodule" id="toc-why-use-lightningmodule" class="nav-link" data-scroll-target="#why-use-lightningmodule"><span class="header-section-number">13.0.1</span> 💡 <strong>Why Use LightningModule?</strong></a></li>
-  <li><a href="#key-components-of-changesegmentor" id="toc-key-components-of-changesegmentor" class="nav-link" data-scroll-target="#key-components-of-changesegmentor"><span class="header-section-number">13.0.2</span> ⚙️ <strong>Key Components of changeSegmentor:</strong></a></li>
-  <li><a href="#expected-outcome-2" id="toc-expected-outcome-2" class="nav-link" data-scroll-target="#expected-outcome-2"><span class="header-section-number">13.0.3</span> ✅ <strong>Expected Outcome:</strong></a></li>
+  <li><a href="#why-these-libraries-1" id="toc-why-these-libraries-1" class="nav-link" data-scroll-target="#why-these-libraries-1">💡 <strong>Why These Libraries?</strong></a></li>
+  <li><a href="#device-check" id="toc-device-check" class="nav-link" data-scroll-target="#device-check">⚙️ <strong>Device Check:</strong></a></li>
+  <li><a href="#expected-outcome" id="toc-expected-outcome" class="nav-link" data-scroll-target="#expected-outcome">✅ <strong>Expected Outcome:</strong></a></li>
   </ul></li>
-  <li><a href="#step-12-building-the-sentinel2changedataset-class" id="toc-step-12-building-the-sentinel2changedataset-class" class="nav-link" data-scroll-target="#step-12-building-the-sentinel2changedataset-class"><span class="header-section-number">14</span> <strong>Step 12: Building the Sentinel2ChangeDataset Class</strong></a>
+  <li><a href="#step-10-building-the-clay-based-segmentor-model" id="toc-step-10-building-the-clay-based-segmentor-model" class="nav-link" data-scroll-target="#step-10-building-the-clay-based-segmentor-model"><strong>Step 10: Building the Clay-Based Segmentor Model</strong></a>
   <ul class="collapse">
-  <li><a href="#why-use-a-custom-dataset-class" id="toc-why-use-a-custom-dataset-class" class="nav-link" data-scroll-target="#why-use-a-custom-dataset-class"><span class="header-section-number">14.0.1</span> 💡 <strong>Why Use a Custom Dataset Class?</strong></a></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works"><span class="header-section-number">14.0.2</span> ⚙️ <strong>How It Works:</strong></a></li>
-  <li><a href="#expected-outcome-3" id="toc-expected-outcome-3" class="nav-link" data-scroll-target="#expected-outcome-3"><span class="header-section-number">14.0.3</span> ✅ <strong>Expected Outcome:</strong></a></li>
+  <li><a href="#model-architecture-overview" id="toc-model-architecture-overview" class="nav-link" data-scroll-target="#model-architecture-overview">💡 <strong>Model Architecture Overview:</strong></a></li>
+  <li><a href="#expected-outcome-1" id="toc-expected-outcome-1" class="nav-link" data-scroll-target="#expected-outcome-1">✅ <strong>Expected Outcome:</strong></a></li>
   </ul></li>
-  <li><a href="#step-13-training-the-model-with-pytorch-lightning" id="toc-step-13-training-the-model-with-pytorch-lightning" class="nav-link" data-scroll-target="#step-13-training-the-model-with-pytorch-lightning"><span class="header-section-number">15</span> <strong>Step 13: Training the Model with PyTorch Lightning</strong></a>
+  <li><a href="#step-11-building-the-changesegmentor-lightning-module" id="toc-step-11-building-the-changesegmentor-lightning-module" class="nav-link" data-scroll-target="#step-11-building-the-changesegmentor-lightning-module"><strong>Step 11: Building the changeSegmentor Lightning Module</strong></a>
   <ul class="collapse">
-  <li><a href="#why-use-pytorch-lightning" id="toc-why-use-pytorch-lightning" class="nav-link" data-scroll-target="#why-use-pytorch-lightning"><span class="header-section-number">15.0.1</span> 💡 <strong>Why Use PyTorch Lightning?</strong></a></li>
-  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">15.0.2</span> ⚙️ <strong>Training Process:</strong></a></li>
-  <li><a href="#expected-outcome-4" id="toc-expected-outcome-4" class="nav-link" data-scroll-target="#expected-outcome-4"><span class="header-section-number">15.0.3</span> ✅ <strong>Expected Outcome:</strong></a></li>
-  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note"><span class="header-section-number">15.0.4</span> note:</a></li>
+  <li><a href="#why-use-lightningmodule" id="toc-why-use-lightningmodule" class="nav-link" data-scroll-target="#why-use-lightningmodule">💡 <strong>Why Use LightningModule?</strong></a></li>
+  <li><a href="#key-components-of-changesegmentor" id="toc-key-components-of-changesegmentor" class="nav-link" data-scroll-target="#key-components-of-changesegmentor">⚙️ <strong>Key Components of changeSegmentor:</strong></a></li>
+  <li><a href="#expected-outcome-2" id="toc-expected-outcome-2" class="nav-link" data-scroll-target="#expected-outcome-2">✅ <strong>Expected Outcome:</strong></a></li>
   </ul></li>
-  <li><a href="#step-14-visualizing-training-progress-with-tensorboard" id="toc-step-14-visualizing-training-progress-with-tensorboard" class="nav-link" data-scroll-target="#step-14-visualizing-training-progress-with-tensorboard"><span class="header-section-number">16</span> <strong>Step 14: Visualizing Training Progress with TensorBoard</strong></a></li>
-  <li><a href="#step-15-evaluation-metrics-for-deforestation-detection" id="toc-step-15-evaluation-metrics-for-deforestation-detection" class="nav-link" data-scroll-target="#step-15-evaluation-metrics-for-deforestation-detection"><span class="header-section-number">17</span> <strong>Step 15: Evaluation Metrics for Deforestation Detection</strong></a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">18</span> Conclusion</a>
+  <li><a href="#step-12-building-the-sentinel2changedataset-class" id="toc-step-12-building-the-sentinel2changedataset-class" class="nav-link" data-scroll-target="#step-12-building-the-sentinel2changedataset-class"><strong>Step 12: Building the Sentinel2ChangeDataset Class</strong></a>
   <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">18.1</span> References</a></li>
+  <li><a href="#why-use-a-custom-dataset-class" id="toc-why-use-a-custom-dataset-class" class="nav-link" data-scroll-target="#why-use-a-custom-dataset-class">💡 <strong>Why Use a Custom Dataset Class?</strong></a></li>
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">⚙️ <strong>How It Works:</strong></a></li>
+  <li><a href="#expected-outcome-3" id="toc-expected-outcome-3" class="nav-link" data-scroll-target="#expected-outcome-3">✅ <strong>Expected Outcome:</strong></a></li>
+  </ul></li>
+  <li><a href="#step-13-training-the-model-with-pytorch-lightning" id="toc-step-13-training-the-model-with-pytorch-lightning" class="nav-link" data-scroll-target="#step-13-training-the-model-with-pytorch-lightning"><strong>Step 13: Training the Model with PyTorch Lightning</strong></a>
+  <ul class="collapse">
+  <li><a href="#why-use-pytorch-lightning" id="toc-why-use-pytorch-lightning" class="nav-link" data-scroll-target="#why-use-pytorch-lightning">💡 <strong>Why Use PyTorch Lightning?</strong></a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process">⚙️ <strong>Training Process:</strong></a></li>
+  <li><a href="#expected-outcome-4" id="toc-expected-outcome-4" class="nav-link" data-scroll-target="#expected-outcome-4">✅ <strong>Expected Outcome:</strong></a></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">note:</a></li>
+  </ul></li>
+  <li><a href="#step-14-visualizing-training-progress-with-tensorboard" id="toc-step-14-visualizing-training-progress-with-tensorboard" class="nav-link" data-scroll-target="#step-14-visualizing-training-progress-with-tensorboard"><strong>Step 14: Visualizing Training Progress with TensorBoard</strong></a></li>
+  <li><a href="#step-15-evaluation-metrics-for-deforestation-detection" id="toc-step-15-evaluation-metrics-for-deforestation-detection" class="nav-link" data-scroll-target="#step-15-evaluation-metrics-for-deforestation-detection"><strong>Step 15: Evaluation Metrics for Deforestation Detection</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -607,9 +682,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">3. Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></h1>
+<h1 class="title"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></h1>
 </div>
 
 
@@ -708,19 +783,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb">View on GitHub</a></p>
-<section id="course-project---deforestation-analysis" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="course-project---deforestation-analysis"><span class="header-section-number">4.0.1</span> Course Project - Deforestation Analysis</h3>
+<section id="course-project---deforestation-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="course-project---deforestation-analysis">Course Project - Deforestation Analysis</h3>
 <p>This Colab notebook demonstrates the training and evaluation of a segmentation model for deforestation detection using Sentinel-2 remote sensing data. The workflow pairs Earth Engine (Gorelick et al.&nbsp;2017) derived image chips and user-provided deforestation labels with a Clay-based Vision Transformer encoder to perform semantic segmentation of forest loss.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/DnPosJ6IJ0Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="project-context" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="project-context"><span class="header-section-number">4.1</span> 🌍 Project Context</h2>
+<section id="project-context" class="level2">
+<h2 class="anchored" data-anchor-id="project-context">🌍 Project Context</h2>
 <p>Deforestation is a critical environmental challenge impacting biodiversity, climate, and local ecosystems. Monitoring deforestation over time is essential for sustainable land management and conservation efforts.</p>
 <p>Deforestation monitoring is difficult in operational settings because disturbance signals can be subtle, intermittent, and easily confused with phenology, forest degradation, or partial canopy loss. Time-series approaches help address these challenges but require careful parameterization, sustained access to Earth observation data, and practical decisions about thresholds and interpretation in complex landscapes (Aryal et al., 2021). In tropical regions, persistent cloud cover further complicates optical monitoring and motivates the use of SAR data and scalable processing environments; recent work has shown that semantic segmentation implemented can support near real-time forest disturbance detection at scale (Kilbride et al., 2023).</p>
 <p>In this project, we develop a deep learning model to detect deforestation from satellite imagery using the Clay model, a state-of-the-art segmentation technique.</p>
 </section>
-<section id="objectives" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="objectives"><span class="header-section-number">4.2</span> 🎯 Objectives:</h2>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">🎯 Objectives:</h2>
 <ol type="1">
 <li><strong>Data Preprocessing:</strong> Convert geospatial data into model-ready formats.<br>
 </li>
@@ -731,8 +806,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Inference:</strong> Predict deforestation on new satellite imagery.</li>
 </ol>
 </section>
-<section id="libraries-and-tools" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="libraries-and-tools"><span class="header-section-number">4.3</span> 💻 Libraries and Tools:</h2>
+<section id="libraries-and-tools" class="level2">
+<h2 class="anchored" data-anchor-id="libraries-and-tools">💻 Libraries and Tools:</h2>
 <ul>
 <li><strong>PyTorch:</strong> Deep learning framework for model training.<br>
 </li>
@@ -746,8 +821,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li><strong>Other Utilities:</strong> NumPy, SciPy, YAML, Box, Matplotlib.</li>
 </ul>
-<section id="workflow" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="workflow"><span class="header-section-number">4.3.1</span> ✅ Workflow:</h3>
+<section id="workflow" class="level3">
+<h3 class="anchored" data-anchor-id="workflow">✅ Workflow:</h3>
 <ol type="1">
 <li>Set up the environment and install libraries.<br>
 </li>
@@ -760,8 +835,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Run inference on new images and visualize the results.</li>
 </ol>
 </section>
-<section id="clay-foundation-model" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="clay-foundation-model"><span class="header-section-number">4.3.2</span> Clay Foundation Model</h3>
+<section id="clay-foundation-model" class="level3">
+<h3 class="anchored" data-anchor-id="clay-foundation-model">Clay Foundation Model</h3>
 <p>Clay is a foundation model of Earth. Foundation models trained on Earth observation (EO) data efficiently distill and synthesize vast amounts of environmental information, allowing them to generalize this knowledge to specific downstream applications. This makes them versatile and powerful tools for nature and climate use cases.</p>
 <p>Clay is an open-source foundation model for Earth observation that uses Vision Transformer (ViT) architectures to learn general-purpose representations from multi-sensor satellite imagery. The model takes satellite imagery together with spatial (location) and temporal (time) information as input and outputs embeddings, which are mathematical representations of a given area at a specific time on Earth’s surface.</p>
 <p>Clay is trained using self-supervised learning (SSL) with a Masked Autoencoder (MAE) approach and is designed to be paired with downstream task-specific components, enabling applications such as semantic segmentation, classification, and change detection using user-provided training data.</p>
@@ -769,18 +844,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Web: https://www.madewithclay.org</p>
 </section>
 </section>
-<section id="computational-requirements" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="computational-requirements"><span class="header-section-number">4.4</span> Computational Requirements</h2>
+<section id="computational-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="computational-requirements">Computational Requirements</h2>
 <p>Training and fine-tuning the Clay Vision Transformer encoder for semantic segmentation is computationally intensive. A CUDA-enabled GPU is strongly recommended. In practice, a GPU with at least 16 GB of VRAM is required to run the training workflow within a reasonable time and without out-of-memory errors. Running the notebook on a CPU-only machine is not recommended for model training and should be limited to code inspection or lightweight testing.</p>
 <p>When using Google Colab, ensure that a GPU runtime is selected (Runtime → Change runtime type → Hardware accelerator → GPU) before executing the training steps.</p>
 <p>Let’s get started! 🚀</p>
 </section>
-<section id="step-1-project-setup" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> <strong>Step 1: Project Setup</strong></h1>
+<section id="step-1-project-setup" class="level1">
+<h1><strong>Step 1: Project Setup</strong></h1>
 <p>In this step, we will set up the environment by installing the necessary libraries.<br>
 These libraries are essential for data handling, model training, and interacting with Google Earth Engine (GEE).</p>
-<section id="why-these-libraries" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="why-these-libraries"><span class="header-section-number">5.1</span> Why These Libraries?</h2>
+<section id="why-these-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="why-these-libraries">Why These Libraries?</h2>
 <ul>
 <li><strong>NumPy:</strong> Efficient numerical operations.<br>
 </li>
@@ -808,12 +883,12 @@ These libraries are essential for data handling, model training, and interacting
 </div>
 </section>
 </section>
-<section id="step-2-mounting-google-drive" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> <strong>Step 2: Mounting Google Drive</strong></h1>
+<section id="step-2-mounting-google-drive" class="level1">
+<h1><strong>Step 2: Mounting Google Drive</strong></h1>
 <p>To store the downloaded data persistently, we will mount Google Drive.<br>
 This allows us to save the downloaded image chips directly to a Drive folder.</p>
-<section id="why-use-google-drive" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="why-use-google-drive"><span class="header-section-number">6.1</span> Why Use Google Drive?</h2>
+<section id="why-use-google-drive" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-google-drive">Why Use Google Drive?</h2>
 <ul>
 <li>Persistent storage between Colab sessions.<br>
 </li>
@@ -821,8 +896,8 @@ This allows us to save the downloaded image chips directly to a Drive folder.</p
 </li>
 <li>Organized structure for training and validation datasets.</li>
 </ul>
-<section id="instructions" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="instructions"><span class="header-section-number">6.1.1</span> Instructions:</h3>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions:</h3>
 <ol type="1">
 <li>Authorize Google Drive access when prompted.<br>
 </li>
@@ -858,12 +933,12 @@ This allows us to save the downloaded image chips directly to a Drive folder.</p
 </section>
 </section>
 </section>
-<section id="step-3-authenticating-and-initializing-google-earth-engine-gee" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> <strong>Step 3: Authenticating and Initializing Google Earth Engine (GEE)</strong></h1>
+<section id="step-3-authenticating-and-initializing-google-earth-engine-gee" class="level1">
+<h1><strong>Step 3: Authenticating and Initializing Google Earth Engine (GEE)</strong></h1>
 <p>Google Earth Engine (GEE) is a powerful platform that provides access to vast amounts of satellite imagery.<br>
 In this step, we will authenticate and initialize GEE to prepare for data retrieval.</p>
-<section id="why-use-gee" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="why-use-gee"><span class="header-section-number">7.1</span> Why Use GEE?</h2>
+<section id="why-use-gee" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-gee">Why Use GEE?</h2>
 <ul>
 <li>Access to high-resolution, multi-temporal satellite imagery.<br>
 </li>
@@ -871,8 +946,8 @@ In this step, we will authenticate and initialize GEE to prepare for data retrie
 </li>
 <li>Ideal for large-scale environmental monitoring tasks.</li>
 </ul>
-<section id="instructions-1" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="instructions-1"><span class="header-section-number">7.1.1</span> Instructions:</h3>
+<section id="instructions-1" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-1">Instructions:</h3>
 <ol type="1">
 <li>Authenticate with your Google account when prompted.<br>
 </li>
@@ -880,13 +955,13 @@ In this step, we will authenticate and initialize GEE to prepare for data retrie
 </ol>
 </section>
 </section>
-<section id="setting-up-your-google-earth-engine-gee-project" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="setting-up-your-google-earth-engine-gee-project"><span class="header-section-number">7.2</span> Setting Up Your Google Earth Engine (GEE) Project</h2>
+<section id="setting-up-your-google-earth-engine-gee-project" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-your-google-earth-engine-gee-project">Setting Up Your Google Earth Engine (GEE) Project</h2>
 <p>In this step, we will initialize Google Earth Engine (GEE) using your personal project name.<br>
 The project name is required to properly authenticate and access your GEE resources.</p>
 </section>
-<section id="important" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="important"><span class="header-section-number">7.3</span> 🔑 Important:</h2>
+<section id="important" class="level2">
+<h2 class="anchored" data-anchor-id="important">🔑 Important:</h2>
 <ul>
 <li>Replace <code>yourprojectname</code> with <strong>your own GEE project name</strong>.<br>
 </li>
@@ -894,8 +969,8 @@ The project name is required to properly authenticate and access your GEE resour
 </li>
 <li>The project name typically looks like <code>your-project-id</code>.</li>
 </ul>
-<section id="instructions-2" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="instructions-2"><span class="header-section-number">7.3.1</span> Instructions:</h3>
+<section id="instructions-2" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-2">Instructions:</h3>
 <ol type="1">
 <li>Locate your project ID in the Google Cloud Console.<br>
 </li>
@@ -944,8 +1019,8 @@ The data will include:<br>
 - Deforestation labels (GeoTIFF)</p>
 </section>
 </section>
-<section id="why-save-as-geotiff" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="why-save-as-geotiff"><span class="header-section-number">7.4</span> Why Save as GeoTIFF?</h2>
+<section id="why-save-as-geotiff" class="level2">
+<h2 class="anchored" data-anchor-id="why-save-as-geotiff">Why Save as GeoTIFF?</h2>
 <ul>
 <li>Efficient storage format for geospatial data.<br>
 </li>
@@ -953,8 +1028,8 @@ The data will include:<br>
 </li>
 <li>Retains georeferencing information.</li>
 </ul>
-<section id="steps" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">7.4.1</span> Steps:</h3>
+<section id="steps" class="level3">
+<h3 class="anchored" data-anchor-id="steps">Steps:</h3>
 <ol type="1">
 <li>Define the data download function.<br>
 </li>
@@ -963,8 +1038,8 @@ The data will include:<br>
 <li>Print confirmation of successful downloads.</li>
 </ol>
 </section>
-<section id="notes" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="notes"><span class="header-section-number">7.4.2</span> notes:</h3>
+<section id="notes" class="level3">
+<h3 class="anchored" data-anchor-id="notes">notes:</h3>
 <p>The servir-ee Google Earth Engine assets project is publicly available. Because of this, users can directly access the datasets and download the required data to their own Google Drive without requesting additional permissions.</p>
 <p>Execution time note: downloading the data may take several minutes depending on connection speed and system load. In our case, this step took approximately 4 minutes to complete. This runtime is expected and has been retained in the notebook to reflect real execution conditions.”</p>
 <div id="cell-15" class="cell">
@@ -1351,12 +1426,12 @@ The data will include:<br>
 </section>
 </section>
 </section>
-<section id="step-5-data-inspection-and-visualization" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> <strong>Step 5: Data Inspection and Visualization</strong></h1>
+<section id="step-5-data-inspection-and-visualization" class="level1">
+<h1><strong>Step 5: Data Inspection and Visualization</strong></h1>
 <p>Before proceeding with model training, it’s crucial to inspect the data.<br>
 Visualizing the image chips will help verify that the downloaded data is correct and consistent.</p>
-<section id="what-to-look-for" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="what-to-look-for"><span class="header-section-number">8.1</span> What to Look For:</h2>
+<section id="what-to-look-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-look-for">What to Look For:</h2>
 <ul>
 <li>Correct alignment between the <strong>before</strong> and <strong>after</strong> images.<br>
 </li>
@@ -1364,8 +1439,8 @@ Visualizing the image chips will help verify that the downloaded data is correct
 </li>
 <li>Proper data format (shape, data type).</li>
 </ul>
-<section id="steps-1" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="steps-1"><span class="header-section-number">8.1.1</span> Steps:</h3>
+<section id="steps-1" class="level3">
+<h3 class="anchored" data-anchor-id="steps-1">Steps:</h3>
 <ol type="1">
 <li>Load random samples from the training set.<br>
 </li>
@@ -1432,13 +1507,13 @@ Visualizing the image chips will help verify that the downloaded data is correct
 </section>
 </section>
 </section>
-<section id="step-6-cloning-the-clay-model-repository" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> <strong>Step 6: Cloning the Clay Model Repository</strong></h1>
+<section id="step-6-cloning-the-clay-model-repository" class="level1">
+<h1><strong>Step 6: Cloning the Clay Model Repository</strong></h1>
 <p>The Clay model is developed as an open-source project; readers interested in the model architecture, pretrained checkpoints, and ongoing development can refer to the public repository and documentation mention at the top.</p>
 <p>To train the Clay Deforestation Segmentation Model, we need to clone the model repository from GitHub.<br>
 This repository contains the model architecture and necessary utility functions.</p>
-<section id="why-clone-the-repository" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="why-clone-the-repository"><span class="header-section-number">9.1</span> Why Clone the Repository?</h2>
+<section id="why-clone-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="why-clone-the-repository">Why Clone the Repository?</h2>
 <ul>
 <li>Access to the Clay model definition.<br>
 </li>
@@ -1446,8 +1521,8 @@ This repository contains the model architecture and necessary utility functions.
 </li>
 <li>Up-to-date model versions directly from the source.</li>
 </ul>
-<section id="steps-2" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="steps-2"><span class="header-section-number">9.1.1</span> Steps:</h3>
+<section id="steps-2" class="level3">
+<h3 class="anchored" data-anchor-id="steps-2">Steps:</h3>
 <ol type="1">
 <li>Clone the repository from GitHub.<br>
 </li>
@@ -1476,8 +1551,8 @@ This repository contains the model architecture and necessary utility functions.
 </section>
 </section>
 </section>
-<section id="step-7-downloading-the-clay-model-from-hugging-face" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> <strong>Step 7: Downloading the Clay Model from Hugging Face</strong></h1>
+<section id="step-7-downloading-the-clay-model-from-hugging-face" class="level1">
+<h1><strong>Step 7: Downloading the Clay Model from Hugging Face</strong></h1>
 <p>In this step, we will download the pre-trained Clay model checkpoint from the Hugging Face Model Hub.<br>
 This model serves as the foundation for our landcover change detection task.</p>
 <p>💡 Why Use the Hugging Face Model Hub?<br>
@@ -1511,8 +1586,8 @@ The Clay model checkpoint will be successfully downloaded and stored in the spec
 <p>““” # <strong>Step 8: Training Configuration</strong></p>
 <p>In this step, we will set up the training pipeline for the Clay Deforestation Segmentation Model.<br>
 This includes configuring the model, defining training parameters, and initializing the training loop.</p>
-<section id="training-setup" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="training-setup"><span class="header-section-number">10.1</span> Training Setup:</h2>
+<section id="training-setup" class="level2">
+<h2 class="anchored" data-anchor-id="training-setup">Training Setup:</h2>
 <ol type="1">
 <li>Install the required libraries for training.<br>
 </li>
@@ -1522,8 +1597,8 @@ This includes configuring the model, defining training parameters, and initializ
 </li>
 <li>Configure checkpoints and logging for monitoring training progress.</li>
 </ol>
-<section id="libraries-needed-for-training" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="libraries-needed-for-training"><span class="header-section-number">10.1.1</span> Libraries Needed for Training:</h3>
+<section id="libraries-needed-for-training" class="level3">
+<h3 class="anchored" data-anchor-id="libraries-needed-for-training">Libraries Needed for Training:</h3>
 <ul>
 <li><strong>torch:</strong> Deep learning framework.<br>
 </li>
@@ -1543,11 +1618,11 @@ This includes configuring the model, defining training parameters, and initializ
 </section>
 </section>
 </section>
-<section id="step-9-importing-libraries-and-setting-up-the-environment" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> <strong>Step 9: Importing Libraries and Setting Up the Environment</strong></h1>
+<section id="step-9-importing-libraries-and-setting-up-the-environment" class="level1">
+<h1><strong>Step 9: Importing Libraries and Setting Up the Environment</strong></h1>
 <p>In this step, we will import the necessary libraries to build, train, and evaluate the Clay-Based Landcover Change Detection model.</p>
-<section id="why-these-libraries-1" class="level3" data-number="11.0.1">
-<h3 data-number="11.0.1" class="anchored" data-anchor-id="why-these-libraries-1"><span class="header-section-number">11.0.1</span> 💡 <strong>Why These Libraries?</strong></h3>
+<section id="why-these-libraries-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-these-libraries-1">💡 <strong>Why These Libraries?</strong></h3>
 <ul>
 <li><strong>torch:</strong> Core deep learning library for model building and training.<br>
 </li>
@@ -1568,16 +1643,16 @@ This includes configuring the model, defining training parameters, and initializ
 <li><strong>segmentation_models_pytorch:</strong> Advanced loss functions and segmentation metrics.</li>
 </ul>
 </section>
-<section id="device-check" class="level3" data-number="11.0.2">
-<h3 data-number="11.0.2" class="anchored" data-anchor-id="device-check"><span class="header-section-number">11.0.2</span> ⚙️ <strong>Device Check:</strong></h3>
+<section id="device-check" class="level3">
+<h3 class="anchored" data-anchor-id="device-check">⚙️ <strong>Device Check:</strong></h3>
 <ul>
 <li>To utilize GPU acceleration, we check for the availability of CUDA.<br>
 </li>
 <li>If a GPU is detected, the model will run on CUDA; otherwise, it will use the CPU.</li>
 </ul>
 </section>
-<section id="expected-outcome" class="level3" data-number="11.0.3">
-<h3 data-number="11.0.3" class="anchored" data-anchor-id="expected-outcome"><span class="header-section-number">11.0.3</span> ✅ <strong>Expected Outcome:</strong></h3>
+<section id="expected-outcome" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcome">✅ <strong>Expected Outcome:</strong></h3>
 <ul>
 <li>Successful import of libraries.<br>
 </li>
@@ -1606,13 +1681,13 @@ This includes configuring the model, defining training parameters, and initializ
 </div>
 </section>
 </section>
-<section id="step-10-building-the-clay-based-segmentor-model" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> <strong>Step 10: Building the Clay-Based Segmentor Model</strong></h1>
+<section id="step-10-building-the-clay-based-segmentor-model" class="level1">
+<h1><strong>Step 10: Building the Clay-Based Segmentor Model</strong></h1>
 <p>In this step, we will build the <strong>Segmentor model</strong> using the Clay Foundation Model.</p>
 <p>The model architecture is designed to leverage the power of the Vision Transformer (ViT) for spatial feature extraction, combined with a cross-attention mechanism to capture temporal changes between two images. Vision Transformers are particularly well suited to segmentation because they model long-range spatial dependencies across image patches, allowing the network to incorporate global context when identifying boundaries and fragmented patterns in land-cover change. Prior work has demonstrated strong performance of transformer-based architectures for semantic segmentation tasks (Strudel et al., 2021; Dosovitskiy et al., 2020).</p>
 <p>The model uses a cross-attention mechanism to fuse tokenized feature representations from the “before” and “after” images, enabling direct interaction between temporal embeddings while preserving spatial context; this mechanism follows the encoder-decoder attention formulation introduced in the original Transformer and is well aligned with later transformer-based remote-sensing change detection frameworks. (Vaswani et al., 2017; Chen et al., 2022)</p>
-<section id="model-architecture-overview" class="level3" data-number="12.0.1">
-<h3 data-number="12.0.1" class="anchored" data-anchor-id="model-architecture-overview"><span class="header-section-number">12.0.1</span> 💡 <strong>Model Architecture Overview:</strong></h3>
+<section id="model-architecture-overview" class="level3">
+<h3 class="anchored" data-anchor-id="model-architecture-overview">💡 <strong>Model Architecture Overview:</strong></h3>
 <ol type="1">
 <li><strong>SegmentEncoder:</strong>
 <ul>
@@ -1645,8 +1720,8 @@ This includes configuring the model, defining training parameters, and initializ
 </ol>
 <hr>
 </section>
-<section id="expected-outcome-1" class="level3" data-number="12.0.2">
-<h3 data-number="12.0.2" class="anchored" data-anchor-id="expected-outcome-1"><span class="header-section-number">12.0.2</span> ✅ <strong>Expected Outcome:</strong></h3>
+<section id="expected-outcome-1" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcome-1">✅ <strong>Expected Outcome:</strong></h3>
 <ul>
 <li>The model will produce a binary mask indicating changes in landcover between two satellite images.<br>
 </li>
@@ -1941,12 +2016,12 @@ This includes configuring the model, defining training parameters, and initializ
 </div>
 </section>
 </section>
-<section id="step-11-building-the-changesegmentor-lightning-module" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> <strong>Step 11: Building the changeSegmentor Lightning Module</strong></h1>
+<section id="step-11-building-the-changesegmentor-lightning-module" class="level1">
+<h1><strong>Step 11: Building the changeSegmentor Lightning Module</strong></h1>
 <p>In this step, we define the <code>changeSegmentor</code> class, which inherits from <code>LightningModule</code>.<br>
 This module integrates the segmentation model with PyTorch Lightning, allowing for structured training and evaluation.</p>
-<section id="why-use-lightningmodule" class="level3" data-number="13.0.1">
-<h3 data-number="13.0.1" class="anchored" data-anchor-id="why-use-lightningmodule"><span class="header-section-number">13.0.1</span> 💡 <strong>Why Use LightningModule?</strong></h3>
+<section id="why-use-lightningmodule" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-lightningmodule">💡 <strong>Why Use LightningModule?</strong></h3>
 <ul>
 <li>Simplifies the training loop and optimizer configuration.<br>
 </li>
@@ -1956,8 +2031,8 @@ This module integrates the segmentation model with PyTorch Lightning, allowing f
 </ul>
 <hr>
 </section>
-<section id="key-components-of-changesegmentor" class="level3" data-number="13.0.2">
-<h3 data-number="13.0.2" class="anchored" data-anchor-id="key-components-of-changesegmentor"><span class="header-section-number">13.0.2</span> ⚙️ <strong>Key Components of changeSegmentor:</strong></h3>
+<section id="key-components-of-changesegmentor" class="level3">
+<h3 class="anchored" data-anchor-id="key-components-of-changesegmentor">⚙️ <strong>Key Components of changeSegmentor:</strong></h3>
 <ol type="1">
 <li><strong>Initialization (<code>__init__</code>):</strong>
 <ul>
@@ -2015,8 +2090,8 @@ This module integrates the segmentation model with PyTorch Lightning, allowing f
 </ol>
 <hr>
 </section>
-<section id="expected-outcome-2" class="level3" data-number="13.0.3">
-<h3 data-number="13.0.3" class="anchored" data-anchor-id="expected-outcome-2"><span class="header-section-number">13.0.3</span> ✅ <strong>Expected Outcome:</strong></h3>
+<section id="expected-outcome-2" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcome-2">✅ <strong>Expected Outcome:</strong></h3>
 <ul>
 <li>A robust and efficient training pipeline for landcover change detection.<br>
 </li>
@@ -2118,12 +2193,12 @@ This module integrates the segmentation model with PyTorch Lightning, allowing f
 </div>
 </section>
 </section>
-<section id="step-12-building-the-sentinel2changedataset-class" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> <strong>Step 12: Building the Sentinel2ChangeDataset Class</strong></h1>
+<section id="step-12-building-the-sentinel2changedataset-class" class="level1">
+<h1><strong>Step 12: Building the Sentinel2ChangeDataset Class</strong></h1>
 <p>In this step, we will define a custom dataset class to handle the loading and preprocessing of satellite image pairs.<br>
 This class will be used to prepare input data for training the Clay Deforestation Segmentation Model.</p>
-<section id="why-use-a-custom-dataset-class" class="level3" data-number="14.0.1">
-<h3 data-number="14.0.1" class="anchored" data-anchor-id="why-use-a-custom-dataset-class"><span class="header-section-number">14.0.1</span> 💡 <strong>Why Use a Custom Dataset Class?</strong></h3>
+<section id="why-use-a-custom-dataset-class" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-a-custom-dataset-class">💡 <strong>Why Use a Custom Dataset Class?</strong></h3>
 <ul>
 <li>Efficiently loads and preprocesses before-and-after satellite images.<br>
 </li>
@@ -2134,8 +2209,8 @@ This class will be used to prepare input data for training the Clay Deforestatio
 <li>Allows for on-the-fly data normalization, reducing preprocessing time.</li>
 </ul>
 </section>
-<section id="how-it-works" class="level3" data-number="14.0.2">
-<h3 data-number="14.0.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">14.0.2</span> ⚙️ <strong>How It Works:</strong></h3>
+<section id="how-it-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-it-works">⚙️ <strong>How It Works:</strong></h3>
 <ol type="1">
 <li><strong>Initialization:</strong>
 <ul>
@@ -2174,8 +2249,8 @@ This class will be used to prepare input data for training the Clay Deforestatio
 </ul></li>
 </ol>
 </section>
-<section id="expected-outcome-3" class="level3" data-number="14.0.3">
-<h3 data-number="14.0.3" class="anchored" data-anchor-id="expected-outcome-3"><span class="header-section-number">14.0.3</span> ✅ <strong>Expected Outcome:</strong></h3>
+<section id="expected-outcome-3" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcome-3">✅ <strong>Expected Outcome:</strong></h3>
 <ul>
 <li>Efficient data loading during training and validation.<br>
 </li>
@@ -2263,12 +2338,12 @@ This class will be used to prepare input data for training the Clay Deforestatio
 </div>
 </section>
 </section>
-<section id="step-13-training-the-model-with-pytorch-lightning" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> <strong>Step 13: Training the Model with PyTorch Lightning</strong></h1>
+<section id="step-13-training-the-model-with-pytorch-lightning" class="level1">
+<h1><strong>Step 13: Training the Model with PyTorch Lightning</strong></h1>
 <p>In this step, we will train the Clay Deforestation Segmentation Model using PyTorch Lightning.<br>
 Lightning simplifies the training loop, handles device management, and provides a structured way to monitor model performance.</p>
-<section id="why-use-pytorch-lightning" class="level3" data-number="15.0.1">
-<h3 data-number="15.0.1" class="anchored" data-anchor-id="why-use-pytorch-lightning"><span class="header-section-number">15.0.1</span> 💡 <strong>Why Use PyTorch Lightning?</strong></h3>
+<section id="why-use-pytorch-lightning" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-pytorch-lightning">💡 <strong>Why Use PyTorch Lightning?</strong></h3>
 <ul>
 <li>Streamlines the training and validation process.<br>
 </li>
@@ -2279,8 +2354,8 @@ Lightning simplifies the training loop, handles device management, and provides 
 <li>Enables efficient monitoring through TensorBoard.</li>
 </ul>
 </section>
-<section id="training-process" class="level3" data-number="15.0.2">
-<h3 data-number="15.0.2" class="anchored" data-anchor-id="training-process"><span class="header-section-number">15.0.2</span> ⚙️ <strong>Training Process:</strong></h3>
+<section id="training-process" class="level3">
+<h3 class="anchored" data-anchor-id="training-process">⚙️ <strong>Training Process:</strong></h3>
 <ol type="1">
 <li><strong>Dataset Initialization:</strong>
 <ul>
@@ -2331,8 +2406,8 @@ Lightning simplifies the training loop, handles device management, and provides 
 </ul></li>
 </ol>
 </section>
-<section id="expected-outcome-4" class="level3" data-number="15.0.3">
-<h3 data-number="15.0.3" class="anchored" data-anchor-id="expected-outcome-4"><span class="header-section-number">15.0.3</span> ✅ <strong>Expected Outcome:</strong></h3>
+<section id="expected-outcome-4" class="level3">
+<h3 class="anchored" data-anchor-id="expected-outcome-4">✅ <strong>Expected Outcome:</strong></h3>
 <ul>
 <li>The model will be trained for the specified number of epochs.<br>
 </li>
@@ -2341,8 +2416,8 @@ Lightning simplifies the training loop, handles device management, and provides 
 <li>The model will progressively improve its performance in detecting deforestation patterns.</li>
 </ul>
 </section>
-<section id="note" class="level3" data-number="15.0.4">
-<h3 data-number="15.0.4" class="anchored" data-anchor-id="note"><span class="header-section-number">15.0.4</span> note:</h3>
+<section id="note" class="level3">
+<h3 class="anchored" data-anchor-id="note">note:</h3>
 <p>Model training was executed using a T4 GPU and completed in approximately 35 minutes. Runtime may vary depending on GPU type and system load, but a training time on the order of tens of minutes indicates the process is running as expected.”</p>
 <div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:922,&quot;referenced_widgets&quot;:[&quot;2ff3bfdee9074d50a9539c6e7c749d20&quot;,&quot;a2473dd290aa41eaa64cbb022fba9090&quot;]}}" data-outputid="761237ee-c761-4e85-d208-e9a6cfaed461">
 <details open="" class="code-fold">
@@ -2396,8 +2471,8 @@ Lightning simplifies the training loop, handles device management, and provides 
 </div>
 </section>
 </section>
-<section id="step-14-visualizing-training-progress-with-tensorboard" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> <strong>Step 14: Visualizing Training Progress with TensorBoard</strong></h1>
+<section id="step-14-visualizing-training-progress-with-tensorboard" class="level1">
+<h1><strong>Step 14: Visualizing Training Progress with TensorBoard</strong></h1>
 <p>In this step, we will visualize the model training metrics using <strong>TensorBoard</strong>.<br>
 TensorBoard provides an interactive dashboard to monitor loss, accuracy, and other performance metrics throughout the training process.</p>
 <p>💡 Why Use TensorBoard?<br>
@@ -2420,8 +2495,8 @@ A TensorBoard interface displaying training progress, including metrics like IoU
 </div>
 <p>TensorBoard provides a quick way to assess whether the model is learning meaningful patterns from the data. When reviewing the training curves, focus on overall trends rather than individual fluctuations. In this example, the training F1 score and IoU steadily increase over time, indicating that the model is improving its ability to correctly identify deforestation pixels relative to the background class. Precision also increases, suggesting the model is becoming more selective and reducing false positives. At the same time, recall begins very high and gradually decreases slightly as training progresses, which is typical as the model transitions from over-predicting change to making more balanced predictions. The validation metrics show similar improvement trends, with validation F1 and IoU stabilizing toward the later epochs, suggesting the model is generalizing reasonably well to unseen samples. The key takeaway is to look for consistent improvement in IoU and F1 alongside decreasing loss and relatively stable validation curves; these patterns indicate that the model is learning useful spatial-temporal features for deforestation detection rather than simply memorizing the training data.</p>
 </section>
-<section id="step-15-evaluation-metrics-for-deforestation-detection" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> <strong>Step 15: Evaluation Metrics for Deforestation Detection</strong></h1>
+<section id="step-15-evaluation-metrics-for-deforestation-detection" class="level1">
+<h1><strong>Step 15: Evaluation Metrics for Deforestation Detection</strong></h1>
 <p>To assess model performance, predictions were compared with ground-truth deforestation masks at the pixel level. Each pixel was classified as true positive (correctly detected deforestation), false positive (non-deforested area predicted as deforested), or false negative (missed deforestation).</p>
 <p>From these counts, the following metrics were computed: Precision: Proportion of predicted deforested pixels that are truly deforested (measures false alarms).</p>
 <p>Recall: Proportion of actual deforested pixels correctly detected (measures missed deforestation).</p>
@@ -2555,11 +2630,11 @@ A TensorBoard interface displaying training progress, including metrics like IoU
 </details>
 </div>
 </section>
-<section id="conclusion" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Conclusion</h1>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
 <p>Foundation models such as Clay represent a shift in how remote sensing analysis can be performed, as they are pre-trained on large volumes of satellite imagery and learn generalizable feature representations that can be adapted to new tasks such as deforestation detection. By leveraging a Vision Transformer backbone, the model captures broader spatial context and temporal differences between “before” and “after” observations, allowing it to highlight forest disturbance patterns without requiring task-specific feature engineering. In this example, the model successfully identifies the general location of deforestation when compared with the ground-truth mask, demonstrating the potential of foundation-model-based workflows for monitoring forest change. However, the prediction appears smoother than the ground truth and includes a vertical “blob”-like artifact, reflecting the limitations of patch-based and convolutional-style decoding approaches that can blur boundaries and generalize disturbances into broader shapes. As a result, while foundation models offer a powerful new paradigm for remote sensing by transferring learned representations across applications, careful tuning, validation, and interpretation remain important when applying them to operational deforestation monitoring tasks.</p>
-<section id="references" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="references"><span class="header-section-number">18.1</span> References</h2>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 <p>Aryal, R.R., Wespestad, C., Kennedy, R., Dilger, J., Dyson, K., Bullock, E., Khanal, N., Kono, M., Poortinga, A., Saah, D. and Tenneson, K. (2021). Lessons learned while implementing a time-series approach to forest canopy disturbance detection in Nepal. Remote Sensing, 13(14), 2666.</p>
 <p>Chen, H., Qi, Z. and Shi, Z., 2021. Remote sensing image change detection with transformers. IEEE Transactions on Geoscience and Remote Sensing, 60, pp.1-14.</p>
 <p>Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S. and Uszkoreit, J., 2020. An image is worth 16x16 words: Transformers for image recognition at scale. arXiv preprint arXiv:2010.11929.</p>
@@ -3020,13 +3095,13 @@ A TensorBoard interface displaying training progress, including metrics like IoU
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="pagination-link" aria-label="Selective Logging Detection with Deep Learning and Very-High Resolution Imagery">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span>
+      <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="pagination-link" aria-label="3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../../04_Object_Detection/index.html" class="pagination-link" aria-label="Object Detection">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object Detection</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-title">Object Detection</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

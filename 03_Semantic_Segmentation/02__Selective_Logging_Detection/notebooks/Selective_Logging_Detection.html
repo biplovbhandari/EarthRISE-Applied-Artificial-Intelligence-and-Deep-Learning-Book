@@ -10,7 +10,7 @@
 <meta name="author" content="Marvin Quispe">
 <meta name="description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 
-<title>3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book</title>
+<title>3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -88,9 +88,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-4598a8ce9d006ffd9079c9f2f534150c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-c8194f8818a5177e36a565bc960368c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-4598a8ce9d006ffd9079c9f2f534150c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -148,12 +148,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
-<meta property="og:title" content="3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:title" content="3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
 <meta property="og:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 <meta property="og:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta property="og:site_name" content="Applied Artificial Intelligence and Deep Learning Book">
 <meta property="og:image:alt" content="">
-<meta name="twitter:title" content="3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:title" content="3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
 <meta name="twitter:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 <meta name="twitter:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta name="twitter:image:alt" content="">
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">3. Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -367,16 +367,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../02_Data_Preparation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Preparation</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Semantic Segmentation</span></a>
+ <span class="menu-text">2. Data Preparation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -384,34 +378,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></span></a>
+  <a href="../../../02_Data_Preparation/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Preparation</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Time Series</span></a>
+ <span class="menu-text">3. Semantic Segmentation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -419,40 +394,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span></a>
+  <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1 Crop Mapping — Rice Mapping in Bhutan with U-Net</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Downscaling</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Future of Deep Learning and Foundational Models</span></a>
+ <span class="menu-text">4. Object Detection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -460,24 +420,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
+  <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Time Series</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics and Artificial Intelligence</span></span></a>
+  <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1 Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Ecological Process Simulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1 Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Transfer Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Transfer Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Fusion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fusion</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Downscaling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Downscaling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Future of Deep Learning and Foundation Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">10.1 Evaluating Foundation Models Trained with Earth Observation Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Ethics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ethics and Artificial Intelligence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Conclusions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../citing.html" class="sidebar-item-text sidebar-link">
@@ -500,27 +575,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#understanding-the-selective-logging-activity" id="toc-understanding-the-selective-logging-activity" class="nav-link active" data-scroll-target="#understanding-the-selective-logging-activity"><span class="header-section-number">3.1</span> Understanding the selective logging activity</a></li>
-  <li><a href="#part-i-data-processing-and-exporting" id="toc-part-i-data-processing-and-exporting" class="nav-link" data-scroll-target="#part-i-data-processing-and-exporting"><span class="header-section-number">3.2</span> Part I: Data processing and exporting</a>
+  <li><a href="#understanding-the-selective-logging-activity" id="toc-understanding-the-selective-logging-activity" class="nav-link active" data-scroll-target="#understanding-the-selective-logging-activity">Understanding the selective logging activity</a></li>
+  <li><a href="#part-i-data-processing-and-exporting" id="toc-part-i-data-processing-and-exporting" class="nav-link" data-scroll-target="#part-i-data-processing-and-exporting">Part I: Data processing and exporting</a>
   <ul class="collapse">
-  <li><a href="#setting-up-your-google-earth-engine-account" id="toc-setting-up-your-google-earth-engine-account" class="nav-link" data-scroll-target="#setting-up-your-google-earth-engine-account"><span class="header-section-number">3.2.1</span> Setting up your Google Earth Engine account</a></li>
-  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration"><span class="header-section-number">3.2.2</span> Data exploration</a></li>
-  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">3.2.3</span> Data processing</a></li>
-  <li><a href="#data-export" id="toc-data-export" class="nav-link" data-scroll-target="#data-export"><span class="header-section-number">3.2.4</span> Data export</a></li>
+  <li><a href="#setting-up-your-google-earth-engine-account" id="toc-setting-up-your-google-earth-engine-account" class="nav-link" data-scroll-target="#setting-up-your-google-earth-engine-account">Setting up your Google Earth Engine account</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data exploration</a></li>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">Data processing</a></li>
+  <li><a href="#data-export" id="toc-data-export" class="nav-link" data-scroll-target="#data-export">Data export</a></li>
   </ul></li>
-  <li><a href="#part-ii-modeling" id="toc-part-ii-modeling" class="nav-link" data-scroll-target="#part-ii-modeling"><span class="header-section-number">3.3</span> Part II: Modeling</a>
+  <li><a href="#part-ii-modeling" id="toc-part-ii-modeling" class="nav-link" data-scroll-target="#part-ii-modeling">Part II: Modeling</a>
   <ul class="collapse">
-  <li><a href="#data-collection-and-initial-settings" id="toc-data-collection-and-initial-settings" class="nav-link" data-scroll-target="#data-collection-and-initial-settings"><span class="header-section-number">3.3.1</span> Data collection and initial settings</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">3.3.2</span> Data visualization</a></li>
-  <li><a href="#data-processing-1" id="toc-data-processing-1" class="nav-link" data-scroll-target="#data-processing-1"><span class="header-section-number">3.3.3</span> Data processing</a></li>
-  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning"><span class="header-section-number">3.3.4</span> Deep learning</a></li>
+  <li><a href="#data-collection-and-initial-settings" id="toc-data-collection-and-initial-settings" class="nav-link" data-scroll-target="#data-collection-and-initial-settings">Data collection and initial settings</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  <li><a href="#data-processing-1" id="toc-data-processing-1" class="nav-link" data-scroll-target="#data-processing-1">Data processing</a></li>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning">Deep learning</a></li>
   </ul></li>
-  <li><a href="#part-iii-model-application" id="toc-part-iii-model-application" class="nav-link" data-scroll-target="#part-iii-model-application"><span class="header-section-number">3.4</span> Part III: Model application</a>
+  <li><a href="#part-iii-model-application" id="toc-part-iii-model-application" class="nav-link" data-scroll-target="#part-iii-model-application">Part III: Model application</a>
   <ul class="collapse">
-  <li><a href="#model-loading" id="toc-model-loading" class="nav-link" data-scroll-target="#model-loading"><span class="header-section-number">3.4.1</span> Model loading</a></li>
-  <li><a href="#model-application" id="toc-model-application" class="nav-link" data-scroll-target="#model-application"><span class="header-section-number">3.4.2</span> Model application</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">3.4.3</span> Discussion</a></li>
-  <li><a href="#optional---cleaning-your-folder" id="toc-optional---cleaning-your-folder" class="nav-link" data-scroll-target="#optional---cleaning-your-folder"><span class="header-section-number">3.4.4</span> Optional - cleaning your folder</a></li>
+  <li><a href="#model-loading" id="toc-model-loading" class="nav-link" data-scroll-target="#model-loading">Model loading</a></li>
+  <li><a href="#model-application" id="toc-model-application" class="nav-link" data-scroll-target="#model-application">Model application</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#optional---cleaning-your-folder" id="toc-optional---cleaning-your-folder" class="nav-link" data-scroll-target="#optional---cleaning-your-folder">Optional - cleaning your folder</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -529,9 +604,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">3. Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></h1>
+<h1 class="title"><span class="chapter-title">3.2 Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></h1>
 </div>
 
 
@@ -582,8 +657,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
-<section id="understanding-the-selective-logging-activity" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="understanding-the-selective-logging-activity"><span class="header-section-number">3.1</span> Understanding the selective logging activity</h2>
+<section id="understanding-the-selective-logging-activity" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-the-selective-logging-activity">Understanding the selective logging activity</h2>
 <p>Forest conservation faces a threat that is difficult to detect but highly devastating: <strong>selective logging</strong>. Unlike deforestation, which can be identified relatively easily from space using freely available satellite imagery, selective logging involves the removal of only <strong>commercially valuable trees</strong> from the forest cover, leaving a deceptive appearance of normality in the forest. For this reason, detecting this activity poses a considerable technological and logistical challenge.</p>
 <p>First, the areas of forest loss caused by this activity are <strong>typically not detected using medium-resolution remote sensing imagery</strong> such as Sentinel-2 and Landsat. This is because tree removal in the forest leaves a small area of ​​impact. Furthermore, the impact is difficult to observe because it occurs below the forest canopy.</p>
 <p>Second, there is only a <strong>short window after harvesting to assess this activity</strong> (2-3 months). This is because tropical forests, especially those in the Amazon rainforest, exhibit high rates of natural regeneration during vegetation succession processes. As a result, signs of disturbance can disappear quickly. Furthermore, the frequency of satellite image acquisition is not always sufficient to detect the activity in time, before it spreads to more remote areas.</p>
@@ -604,8 +679,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="part-i-data-processing-and-exporting" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="part-i-data-processing-and-exporting"><span class="header-section-number">3.2</span> Part I: Data processing and exporting</h2>
+<section id="part-i-data-processing-and-exporting" class="level2">
+<h2 class="anchored" data-anchor-id="part-i-data-processing-and-exporting">Part I: Data processing and exporting</h2>
 <p>Due to the growing volume of available satellite data and the need for researchers and organizations to process it efficiently, cloud platforms such as <a href="https://earthengine.google.com/">Google Earth Engine (GEE)</a>. have become widely used tools in geospatial analysis. GEE allows users to access and process large collections of satellite data without needing to download them locally, which significantly reduces computational requirements; for this reason, it is currently one of the most used platforms for geospatial analysis. Additionally, it offers a free plan, as well as commercial options for users with greater processing and storage needs.</p>
 <p>This section presents a simple workflow for processing satellite data on the Google Earth Engine (GEE) platform and exporting it to an optimized format (TFRecord) to Google Drive. It should be noted that all sections in this application example have been developed to run on Google Colab (free version), using CPUs for reference data export and inference (Part I and Part III), and GPUs for model training (Part II). Therefore, we recommend using this platform for execution. If you wish to run it locally, we suggest using Visual Studio Code, after installing the <a href="https://marketplace.visualstudio.com/items?itemName=Google.colab">Google Colab VS Code Extension</a>.</p>
 <p>All the files needed to implement this application example are available on <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/02__Selective_Logging_Detection">GitHub</a>. In addition, the benchmark data used can be found on <a href="https://zenodo.org/records/19614389">Zenodo</a>. We recommend downloading and reviewing its contents to better understand the data structure or, if you prefer, proceeding directly to model training (Part II). However, it is not necessary to download it to run this section (Part I), as it includes the process of exporting the reference data from scratch directly to Google Drive. The complete export of the reference data takes approximately 1 hour and 20 minutes and generates a set of files with a total size of approximately 17 MB.</p>
@@ -637,8 +712,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-label="5"></a><span class="op">!</span>echo <span class="op">-</span>n <span class="st">"GPU: "</span> <span class="op">&amp;&amp;</span> (nvidia<span class="op">-</span>smi <span class="op">--</span>query<span class="op">-</span>gpu<span class="op">=</span>name <span class="op">--</span><span class="bu">format</span><span class="op">=</span>csv,noheader <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null <span class="op">||</span> echo <span class="st">"Not available"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="setting-up-your-google-earth-engine-account" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="setting-up-your-google-earth-engine-account"><span class="header-section-number">3.2.1</span> Setting up your Google Earth Engine account</h3>
+<section id="setting-up-your-google-earth-engine-account" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-your-google-earth-engine-account">Setting up your Google Earth Engine account</h3>
 <p>The Google Earth Engine Python API requires a personal account. For enabling the API you need the following:</p>
 <ul>
 <li>A Google account linked to Google Earth Engine.</li>
@@ -646,8 +721,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>For detailed information on how to create a GEE account and set up a project on Google Cloud (including enabling the API, selecting the non-commercial use option, and reviewing quota levels), we recommend that you refer to the following <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/additional_notebooks/1_data_processing.ipynb">notebook</a>.</p>
 </section>
-<section id="data-exploration" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">3.2.2</span> Data exploration</h3>
+<section id="data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="data-exploration">Data exploration</h3>
 <p>First, we will import the official <a href="https://developers.google.com/earth-engine/guides/python_install">Earth Engine library</a> in <strong>Python</strong>, for the data visualization and processing, using <code>import</code></p>
 <div id="cell-13" class="cell">
 <details open="" class="code-fold">
@@ -697,10 +772,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="data-processing" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">3.2.3</span> Data processing</h3>
-<section id="assign-a-numerical-value-to-the-class" class="level4" data-number="3.2.3.1">
-<h4 data-number="3.2.3.1" class="anchored" data-anchor-id="assign-a-numerical-value-to-the-class"><span class="header-section-number">3.2.3.1</span> Assign a numerical value to the class</h4>
+<section id="data-processing" class="level3">
+<h3 class="anchored" data-anchor-id="data-processing">Data processing</h3>
+<section id="assign-a-numerical-value-to-the-class" class="level4">
+<h4 class="anchored" data-anchor-id="assign-a-numerical-value-to-the-class">Assign a numerical value to the class</h4>
 <p>This workflow is designed for a binary semantic segmentation, for this, we need an image label, that matches the projection and size of our input image. This image label will require two values:</p>
 <ul>
 <li>Value of 1: this is what we want to detect (logging).</li>
@@ -732,8 +807,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="create-the-class-band-of-the-image" class="level4" data-number="3.2.3.2">
-<h4 data-number="3.2.3.2" class="anchored" data-anchor-id="create-the-class-band-of-the-image"><span class="header-section-number">3.2.3.2</span> Create the “class” band of the image</h4>
+<section id="create-the-class-band-of-the-image" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-class-band-of-the-image">Create the “class” band of the image</h4>
 <p>As we mentioned before, we need an image label. For this, we will create a band, using our processed polygons. This image label will have two pixel values, 1 for logging and 0 for everything else (background).</p>
 <p>To do this, we will create a function that <a href="https://developers.google.com/earth-engine/apidocs/ee-featurecollection-reducetoimage">transforms</a> our feature collection (polygons) to a binary image.</p>
 <div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:15,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364239138,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="99f3ac62-8465-4a92-d491-a4a38e580bd6">
@@ -769,8 +844,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="image-transformation" class="level4" data-number="3.2.3.3">
-<h4 data-number="3.2.3.3" class="anchored" data-anchor-id="image-transformation"><span class="header-section-number">3.2.3.3</span> Image transformation</h4>
+<section id="image-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="image-transformation">Image transformation</h4>
 <p>There are 3 ways of exporting our data:</p>
 <ul>
 <li>Exporting the whole image, then with a GIS Software or with programming, split the whole image into patches of equal size.</li>
@@ -819,8 +894,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="data-export" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="data-export"><span class="header-section-number">3.2.4</span> Data export</h3>
+<section id="data-export" class="level3">
+<h3 class="anchored" data-anchor-id="data-export">Data export</h3>
 <p>In machine learning and deep learning, it is common practice to divide the benchmark dataset into training, validation, and test subsets. The <strong>training set</strong> is used to adjust the model’s parameters, that is, to enable the algorithm to learn the patterns present in the data. The <strong>validation set</strong> is used to adjust the hyperparameters and monitor the model’s performance during training, allowing for the detection of issues such as overfitting. Finally, the <strong>test set</strong> is reserved for conducting a final, independent evaluation of the model, providing an objective estimate of its ability to generalize to unseen data.</p>
 <p>The purpose of splitting the benchmark data is to ensure adequate model performance and to objectively evaluate that performance during the training process; therefore, this split is essential and is guided by various strategies and methodological criteria.</p>
 <p>For example, a widely used ratio in machine learning, due to its alignment with the Pareto principle, is the 80:20 split between training and testing. From this basic configuration, multiple variations have emerged, most of which now incorporate a validation set. These ratios depend, to a large extent, on factors such as the amount of available data, the heterogeneity of the information, and the complexity of the problem being modeled. Consequently, it is possible to adjust the proportion of data allocated to training by reducing or expanding the validation and test sets according to the specific needs of the analysis, but, generally, without straying too far from the most common ratios, such as 80:20 (training/testing) or its variant, 70:20:10 (training/validation/testing). An inappropriate data splitting strategy can compromise the proper evaluation of the model and lead to unreliable performance estimates.</p>
@@ -963,11 +1038,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="part-ii-modeling" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="part-ii-modeling"><span class="header-section-number">3.3</span> Part II: Modeling</h2>
+<section id="part-ii-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="part-ii-modeling">Part II: Modeling</h2>
 <p>This section shows the workflow used to train a deep learning model with the patches saved from the previous section (Part I). We will load our TFRecords, train a model with them and save it for further use (inference). The notebook was developed and configured specifically to run on Google Colab, so its implementation is optimized to run on that platform. In addition, it is necessary to configure the environment to enable GPU computing by changing the runtime type. First, navigate to <em>Edit → Notebook Settings</em> and select GPU from the Hardware Accelerator options.</p>
-<section id="data-collection-and-initial-settings" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="data-collection-and-initial-settings"><span class="header-section-number">3.3.1</span> Data collection and initial settings</h3>
+<section id="data-collection-and-initial-settings" class="level3">
+<h3 class="anchored" data-anchor-id="data-collection-and-initial-settings">Data collection and initial settings</h3>
 <p>We are going to connect <strong>Google Drive</strong> with <strong>Google Colab</strong> to manage the exported data (patches) from the previous section.</p>
 <div id="cell-61" class="cell">
 <details open="" class="code-fold">
@@ -1088,8 +1163,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="data-visualization" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">3.3.2</span> Data visualization</h3>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
 <p>First, we will analyze a single TFRecord file, if we explore the folder where the files were downloaded, we can see that they are “compressed” with a special <code>.gz</code> format, Tensorflow allows the use of this special format, without the need to decompress the files.</p>
 <p>We will start by creating a variable called record, which will include in a container <code>tf.data.TFRecordDataset()</code> the path of an exported file. <em>Please verify that the export path is the same, in the previous example we exported our data to the DL_Book folder in Google Drive</em></p>
 <div id="cell-75" class="cell">
@@ -1182,10 +1257,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This plot compares the exported SkySat satellite image patch with the hand-digitized label. Performing the manual digitization process takes many hours, especially when the logging activity is intense. Deep Learning models greatly speed up this manual process and allow the user to focus on evaluating the output.</p>
 </section>
-<section id="data-processing-1" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="data-processing-1"><span class="header-section-number">3.3.3</span> Data processing</h3>
-<section id="definition-of-variables" class="level4" data-number="3.3.3.1">
-<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="definition-of-variables"><span class="header-section-number">3.3.3.1</span> Definition of variables</h4>
+<section id="data-processing-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-processing-1">Data processing</h3>
+<section id="definition-of-variables" class="level4">
+<h4 class="anchored" data-anchor-id="definition-of-variables">Definition of variables</h4>
 <p>Before performing data processing, some variables will be defined for the training.</p>
 <ul>
 <li>The variable <code>kernel_size</code> contains the size of the patch, from which we build its <code>shape</code>.</li>
@@ -1232,8 +1307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="create-a-tfrecorddataset" class="level4" data-number="3.3.3.2">
-<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="create-a-tfrecorddataset"><span class="header-section-number">3.3.3.2</span> Create a TFRecordDataset</h4>
+<section id="create-a-tfrecorddataset" class="level4">
+<h4 class="anchored" data-anchor-id="create-a-tfrecorddataset">Create a TFRecordDataset</h4>
 <p>TFRecordDataset are a collection of TFRecords, so they are very useful for storing large amounts of data, and are optimized to save memory.</p>
 <p>First, we will create a function called <code>.parse_tfrecord()</code>, which will perform the same functionality as in the data visualization, done previously. We will transform the structure of each TFRecord.</p>
 <div id="cell-96" class="cell">
@@ -1293,10 +1368,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="deep-learning" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="deep-learning"><span class="header-section-number">3.3.4</span> Deep learning</h3>
-<section id="model-construction" class="level4" data-number="3.3.4.1">
-<h4 data-number="3.3.4.1" class="anchored" data-anchor-id="model-construction"><span class="header-section-number">3.3.4.1</span> Model construction</h4>
+<section id="deep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="deep-learning">Deep learning</h3>
+<section id="model-construction" class="level4">
+<h4 class="anchored" data-anchor-id="model-construction">Model construction</h4>
 <p>In this notebook we will use a modification of the U-Net architecture developed by <a href="https://arxiv.org/abs/1505.04597">Ronneberger et al., (2015)</a>. The U-Net architecture was initially designed for use in biomedical imaging but proved to be very efficient in the segmentation of satellite and drone images, and is currently one of the most widely used for that purpose. This architecture has demonstrated remarkable effectiveness in various environmental monitoring applications, including agricultural field boundary detection <a href="https://doi.org/10.1016/j.jag.2022.102685">John &amp; Zhang, 2022</a>, urban land use classification, and coastal change detection. <a href="https://doi.org/10.48550/arXiv.2003.02899">Ulmas &amp; Liiv, 2020</a> further validated U-Net’s superiority in crop type mapping from multi-spectral satellite imagery, showing that its ability to preserve spatial resolution through the decoder path results in more precise segmentation boundaries compared to traditional convolutional neural networks or patch-based classification approaches. The architecture’s robustness to varying image resolutions and its capacity to learn from limited training data through effective data augmentation make it particularly well-suited for remote sensing applications where high-quality labeled data may be scarce <a href="https://doi.org/10.3390/rs14112719">Manos et al., 2022</a>.</p>
 <p>To represent the architecture we will use some layers of <code>tensorflow.keras</code>. This modified version of U-Net has more encoding and decoding blocks than the original architecture, which increases the depth of the model and its learnability. Unlike the original design, which starts and ends with 64 filters, this implementation starts and ends with a layer of 32 filters, slightly reducing the initial complexity before continuing with the standard progression. Below is a diagram of the modified U-Net architecture used.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1376,8 +1451,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="model-training" class="level4" data-number="3.3.4.2">
-<h4 data-number="3.3.4.2" class="anchored" data-anchor-id="model-training"><span class="header-section-number">3.3.4.2</span> Model training</h4>
+<section id="model-training" class="level4">
+<h4 class="anchored" data-anchor-id="model-training">Model training</h4>
 <p>Once the model is defined, we will proceed to train it, adjusting it to the already processed data set, using the <code>.fit()</code> function. Feel free to change the parameters and use the GPU environment!</p>
 <div id="cell-112" class="cell">
 <details open="" class="code-fold">
@@ -1428,8 +1503,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Although the validation loss shows some instability, particularly a very high value during the first epoch followed by fluctuations in subsequent epochs, it quickly stabilizes to low values, which may be attributed to initialization effects or data scaling issues rather than persistent model misfit. Overall, the model demonstrates strong and consistent segmentation performance.</p>
 <p>Given these results, extending the training beyond 10 epochs may yield only marginal improvements. Considering the relatively small dataset, additional training could increase the risk of overfitting without significantly enhancing model performance.</p>
 </section>
-<section id="model-evaluation" class="level4" data-number="3.3.4.3">
-<h4 data-number="3.3.4.3" class="anchored" data-anchor-id="model-evaluation"><span class="header-section-number">3.3.4.3</span> Model evaluation</h4>
+<section id="model-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="model-evaluation">Model evaluation</h4>
 <p>Now, we will use the test dataset, reserved for this moment. We can get the total metrics for the entire test data set.</p>
 <div id="cell-118" class="cell">
 <details open="" class="code-fold">
@@ -1480,8 +1555,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Despite being trained on a small dataset for only 10 epochs, the model produces high-quality segmentations with well-defined boundaries and contiguous regions, validating both the architecture choice and the training approach for this VHR satellite imagery application. This model proves that effective selective logging monitoring is achievable without massive datasets or extensive computational power. This modified U-Net architecture provides a powerful combination of high precision, data efficiency, and proven real-world effectiveness.</p>
 </section>
-<section id="save-the-model" class="level4" data-number="3.3.4.4">
-<h4 data-number="3.3.4.4" class="anchored" data-anchor-id="save-the-model"><span class="header-section-number">3.3.4.4</span> Save the model</h4>
+<section id="save-the-model" class="level4">
+<h4 class="anchored" data-anchor-id="save-the-model">Save the model</h4>
 <p>Once we have an adequate model based on the metrics used, we will proceed to save it.</p>
 <p>To do this we will use the <code>tf.keras.save_model()</code> function and we will have to specify the path to save the model.</p>
 <div id="cell-125" class="cell">
@@ -1502,8 +1577,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="part-iii-model-application" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="part-iii-model-application"><span class="header-section-number">3.4</span> Part III: Model application</h2>
+<section id="part-iii-model-application" class="level2">
+<h2 class="anchored" data-anchor-id="part-iii-model-application">Part III: Model application</h2>
 <p>This section demonstrates the workflow used to apply our deep learning model locally, which was trained and saved in the previous section (Part II). We will load the trained U-Net model, as well as our SkySat image. We will split the image into patches and apply the model to each patch separately. Finally, we will merge all the fragments and resynthesize the image. This workflow is designed for use in Google Colab.</p>
 <p>This section will require the following packages:</p>
 <ul>
@@ -1551,8 +1626,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>If you do not wish to run the previous section, you can create a copy from the original folder. Click <a href="https://drive.google.com/drive/folders/1v30R0-2j5WkgekRxYUw4PHS04c2N9YJR">here</a> to go to the Drive folder. Make sure to modify the paths to match the current notebook.</p>
-<section id="model-loading" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="model-loading"><span class="header-section-number">3.4.1</span> Model loading</h3>
+<section id="model-loading" class="level3">
+<h3 class="anchored" data-anchor-id="model-loading">Model loading</h3>
 <p>If you have followed the previous steps, you will have your model stored already in Google Drive, we will load our model with the <code>tf.keras.models.load_model()</code> function.</p>
 <div id="cell-141" class="cell">
 <details open="" class="code-fold">
@@ -1596,8 +1671,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This satellite image was taken from an indigenous community called <a href="https://www.maapprogram.org/es/tala-fatima/">Fatima</a> in the year 2021. In this community, more than 300 trees were detected being cut down. Imagine how long it would take a GIS specialist to gather data through manual digitization. We will apply the already trained model to the image and analyze the output of the model.</p>
 </section>
-<section id="model-application" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="model-application"><span class="header-section-number">3.4.2</span> Model application</h3>
+<section id="model-application" class="level3">
+<h3 class="anchored" data-anchor-id="model-application">Model application</h3>
 <p>We will define the input path of our image, and the desired output path.</p>
 <div id="cell-150" class="cell">
 <details open="" class="code-fold">
@@ -1771,14 +1846,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, models are not perfect. There are some artifacts that affect our predictions. There are subtle vertical and horizontal lines creating a grid pattern across the entire prediction. This is because the model sees each patch independently without context of adjacent areas. There are also features that span tile boundaries and get processed differently on each side. There are advanced techniques to solve this, such as creating an overlap-tile strategy. This means processing patches with 50% overlap and blend the output. Another way to solve this would be through weighted averaging, which is giving more weight to center of patches, and less to edges.</p>
 </section>
-<section id="discussion" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="discussion"><span class="header-section-number">3.4.3</span> Discussion</h3>
+<section id="discussion" class="level3">
+<h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
 <p>We have successfully applied our model to a scene from a SkySat image. Through visual inspection, we can see that the model isn’t perfect. In fact, it confuses water with selective logging. This is possibly due to the limited amount of data containing water as a background. Another interesting effect is the edge effect. You can see in the upper right corner of the predictions that there are lines with low probability. This can be corrected by overlapping patches.</p>
 <p>To evaluate the effectiveness of the model, validation is necessary. There are different validation techniques, with numerous types of sampling. However, this notebook will not address these topics as they are subjective, in line with the study objective.</p>
 <p>We encourage you to make changes to these notebooks, configure hyperparameters, patch size, batch size, learning rate, epochs, among others.</p>
 </section>
-<section id="optional---cleaning-your-folder" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="optional---cleaning-your-folder"><span class="header-section-number">3.4.4</span> Optional - cleaning your folder</h3>
+<section id="optional---cleaning-your-folder" class="level3">
+<h3 class="anchored" data-anchor-id="optional---cleaning-your-folder">Optional - cleaning your folder</h3>
 <p>Use the following code to clean the contents of your folder.</p>
 <div id="cell-179" class="cell">
 <details open="" class="code-fold">
@@ -2240,13 +2315,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="pagination-link" aria-label="Crop Mapping — Rice Mapping in Bhutan with U-Net">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></span>
+      <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="pagination-link" aria-label="3.1 Crop Mapping — Rice Mapping in Bhutan with U-Net">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3.1 Crop Mapping — Rice Mapping in Bhutan with U-Net</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="pagination-link" aria-label="Clay Deforestation Segmentation Model">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="pagination-link" aria-label="3.3 Clay Deforestation Segmentation Model">
+        <span class="nav-page-text"><span class="chapter-title">3.3 Clay Deforestation Segmentation Model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
